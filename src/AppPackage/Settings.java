@@ -13,6 +13,26 @@ public class Settings {
         boolean chol = false;
     public Settings(){
     }
+    
+    public boolean getCal(){
+        return cal;
+    }
+    public boolean getSugar(){
+        return sugar;
+    }
+    public boolean getProtein(){
+        return protein;
+    }
+    public boolean getCarbs(){
+        return carbs;
+    }
+    public boolean getFat(){
+        return fat;
+    }
+    public boolean getChol(){
+        return chol;
+    }
+    
     public void display(){
         JPanel myPanel = new JPanel(); //create dialog box
         
