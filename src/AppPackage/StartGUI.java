@@ -5,7 +5,8 @@ package AppPackage;
 import java.util.ArrayList;
 
 public class StartGUI extends javax.swing.JFrame {
-
+    public static Settings settings = new Settings();
+    ArrayList<foodItem> pantry = new ArrayList<foodItem>();
     /**
      * Creates new form MainGUI
      */
@@ -23,49 +24,34 @@ public class StartGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         PantryPanel = new javax.swing.JPanel();
-        RecipePanel = new javax.swing.JPanel();
-        ShoppingPanel = new javax.swing.JPanel();
+        addItemPantry = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         PantryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Pantry"));
 
+        addItemPantry.setText("+");
+        addItemPantry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addItemPantryActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PantryPanelLayout = new javax.swing.GroupLayout(PantryPanel);
         PantryPanel.setLayout(PantryPanelLayout);
         PantryPanelLayout.setHorizontalGroup(
             PantryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PantryPanelLayout.createSequentialGroup()
+                .addContainerGap(317, Short.MAX_VALUE)
+                .addComponent(addItemPantry)
+                .addContainerGap())
         );
         PantryPanelLayout.setVerticalGroup(
             PantryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
-        );
-
-        RecipePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Recipes"));
-
-        javax.swing.GroupLayout RecipePanelLayout = new javax.swing.GroupLayout(RecipePanel);
-        RecipePanel.setLayout(RecipePanelLayout);
-        RecipePanelLayout.setHorizontalGroup(
-            RecipePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        RecipePanelLayout.setVerticalGroup(
-            RecipePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        ShoppingPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Shopping List"));
-
-        javax.swing.GroupLayout ShoppingPanelLayout = new javax.swing.GroupLayout(ShoppingPanel);
-        ShoppingPanel.setLayout(ShoppingPanelLayout);
-        ShoppingPanelLayout.setHorizontalGroup(
-            ShoppingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        ShoppingPanelLayout.setVerticalGroup(
-            ShoppingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(PantryPanelLayout.createSequentialGroup()
+                .addComponent(addItemPantry)
+                .addGap(0, 232, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -74,27 +60,25 @@ public class StartGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PantryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RecipePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ShoppingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addComponent(PantryPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PantryPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(RecipePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ShoppingPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(PantryPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         setSize(new java.awt.Dimension(416, 338));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addItemPantryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemPantryActionPerformed
+        AddItemFrame add = new AddItemFrame(settings);
+        add.display();
+    }//GEN-LAST:event_addItemPantryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,15 +111,12 @@ public class StartGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new StartGUI().setVisible(true);
-                Settings settings = new Settings();
                 settings.display();
             }
         });
     }
-    ArrayList<foodItem> pantry = new ArrayList<foodItem>();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PantryPanel;
-    private javax.swing.JPanel RecipePanel;
-    private javax.swing.JPanel ShoppingPanel;
+    private javax.swing.JButton addItemPantry;
     // End of variables declaration//GEN-END:variables
 }
