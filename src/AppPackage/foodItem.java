@@ -9,12 +9,12 @@ import java.util.Date;
 public class foodItem {
     private String name="";
     private Date expire = new Date(); //need to figure out how to input the date
-    private double cal;
-    private double sugar;
-    private double protein;
-    private double carbs;
-    private double fat;
-    private double chol;
+    private double cal = 0;
+    private double sugar = 0;
+    private double protein = 0;
+    private double carbs = 0;
+    private double fat = 0;
+    private double chol = 0;
     private boolean Pantry;
     
     public foodItem(String name, Date expire){
@@ -33,6 +33,35 @@ public class foodItem {
         this.chol = chol;
         this.Pantry = Pantry;
     }
+    //set methods
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setExpire(Date expire){
+        this.expire = expire;
+    }
+    public void setCal(double cal){
+        this.cal = cal;
+    }
+    public void setSugar(double sugar){
+        this.sugar = sugar;
+    }
+    public void setProtein(double protein){
+        this.protein = protein;
+    }
+    public void setCarbs(double carbs){
+        this.carbs = carbs;
+    }
+    public void setFat(double fat){
+        this.fat = fat;
+    }
+    public void setChol(double chol){
+        this.chol = chol;
+    }
+    public void setPantry(boolean pantry){
+        Pantry = pantry;
+    }
+    //get methods
     public String getName(){
         return name;
     }
