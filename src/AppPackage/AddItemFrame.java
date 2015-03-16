@@ -70,7 +70,7 @@ public class AddItemFrame {
         myPanel.add(Texpiration);
         
         int result = JOptionPane.showConfirmDialog(null, myPanel, 
-               "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION);
+               "Add Item", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
             name = Titem.getText();
             cal = Double.parseDouble(Tcal.getText());
