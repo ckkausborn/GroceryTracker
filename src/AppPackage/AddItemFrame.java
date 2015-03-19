@@ -6,7 +6,10 @@
 
 package AppPackage;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.BoxLayout;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,7 +27,7 @@ public class AddItemFrame {
     double fat;
     double chol;
     Date expire;
-    
+    SimpleDateFormat formatter = new SimpleDateFormat("MM/DD/YYYY"); 
     
     JTextField Titem = new JTextField(8);
     JTextField Tcal = new JTextField(6);
@@ -33,13 +36,14 @@ public class AddItemFrame {
     JTextField Tcarbs = new JTextField(6);
     JTextField Tfat = new JTextField(6);
     JTextField Tchol = new JTextField(6);
-    JFormattedTextField Texpiration = new JFormattedTextField();
+    JFormattedTextField Texpiration = new JFormattedTextField(formatter);
     
     public AddItemFrame(Settings a){
         this.a = a;
     }
     public void display(){
         JPanel myPanel = new JPanel(); //create dialog box
+        myPanel.setLayout(new BoxLayout(myPanel,BoxLayout.Y_AXIS));
         myPanel.add(new JLabel("Food Name:"));
         myPanel.add(Titem);
         if (a.getCal()){
@@ -72,6 +76,7 @@ public class AddItemFrame {
         int result = JOptionPane.showConfirmDialog(null, myPanel, 
                "Add Item", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
+            try{
             name = Titem.getText();
             cal = Double.parseDouble(Tcal.getText());
             sugar = Double.parseDouble(Tsugar.getText());
@@ -79,7 +84,11 @@ public class AddItemFrame {
             carbs = Double.parseDouble(Tcarbs.getText());
             fat = Double.parseDouble(Tfat.getText());
             chol = Double.parseDouble(Tchol.getText());
-            //need to add expiration date
+            expire = formatter.parse(Texpiration.getText());
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Please enter the expiration date in the format 'MM/DD/YYY");
+            }
         }
     }
 }
