@@ -23,7 +23,7 @@ public class MainGUI extends javax.swing.JFrame {
         PantryTab = new javax.swing.JPanel();
         addItemButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        PantryList = new javax.swing.JList();
         RecipesTab = new javax.swing.JPanel();
         ShoppingTab = new javax.swing.JPanel();
         settingsButton = new javax.swing.JButton();
@@ -42,7 +42,7 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(PantryList);
 
         javax.swing.GroupLayout PantryTabLayout = new javax.swing.GroupLayout(PantryTab);
         PantryTab.setLayout(PantryTabLayout);
@@ -129,7 +129,13 @@ public class MainGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemButtonActionPerformed
-        new AddItemFrame(settings).display();
+        AddItemFrame x = new AddItemFrame(settings);
+        x.display();
+        pantry.add(new foodItem(x.getName(), x.getExpire(), x.getCal(),x.getSugar(),
+                x.getProtein(),x.getCarbs(), x.getFat(),x.getChol(), true));
+        for (int i = 0; i<pantry.size(); i++){
+            //work for tomorrow: figure out how to get the arraylist to print out
+        }
     }//GEN-LAST:event_addItemButtonActionPerformed
 
     private void settingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsButtonActionPerformed
@@ -171,11 +177,11 @@ public class MainGUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList PantryList;
     private javax.swing.JPanel PantryTab;
     private javax.swing.JPanel RecipesTab;
     private javax.swing.JPanel ShoppingTab;
     private javax.swing.JButton addItemButton;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton settingsButton;

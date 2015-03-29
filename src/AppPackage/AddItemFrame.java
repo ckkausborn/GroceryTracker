@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package AppPackage;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.BoxLayout;
@@ -20,12 +14,12 @@ import javax.swing.JTextField;
 public class AddItemFrame {
     Settings a = new Settings();
     String name;
-    double cal;
-    double sugar;
-    double protein;
-    double carbs;
-    double fat;
-    double chol;
+    double cal = 0;
+    double sugar = 0;
+    double protein = 0;
+    double carbs = 0;
+    double fat = 0;
+    double chol = 0;
     Date expire;
     SimpleDateFormat formatter = new SimpleDateFormat("MM/DD/YYYY"); 
     
@@ -38,9 +32,112 @@ public class AddItemFrame {
     JTextField Tchol = new JTextField(6);
     JFormattedTextField Texpiration = new JFormattedTextField(formatter);
     
+    
     public AddItemFrame(Settings a){
         this.a = a;
     }
+    public String getName(){
+        return name;
+    }
+    public Date getExpire(){
+        return expire;
+    }
+    public double getCal(){
+        return cal;
+    }
+    public double getSugar(){
+        return sugar;
+    }
+    public double getProtein(){
+        return protein;
+    }
+    public double getCarbs(){
+        return carbs;
+    }
+    public double getFat(){
+        return fat;
+    }
+    public double getChol(){
+        return chol;
+    }
+    
+    public void clear(){
+        Titem.setText("");
+        Tcal.setText("");
+        Tsugar.setText("");
+        Tprotein.setText("");
+        Tcarbs.setText("");
+        Tfat.setText("");
+        Tchol.setText("");
+        Texpiration.setText("00/00/00");
+    }
+    public void confirm(){
+         
+            name = Titem.getText();
+            if (a.getCal()){
+                try{
+                    cal = Double.parseDouble(Tcal.getText());
+                }
+                catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "Please enter calories as a number.");
+                    display();
+                }
+            }
+            if (a.getSugar()){
+                try {
+                    sugar = Double.parseDouble(Tsugar.getText());
+                }
+                catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "Please enter sugar as a number.");
+                    display();
+                }
+            }
+            if (a.getProtein()){
+                try {
+                    protein = Double.parseDouble(Tprotein.getText());
+                }
+                catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "Please enter protein as a number.");
+                    display();
+                }
+            }
+            if (a.getCarbs()){
+                try {
+                    carbs = Double.parseDouble(Tcarbs.getText());
+                }
+                catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "Please enter carbohydrates as a number.");
+                    display();
+                }
+            }
+            if (a.getFat()){
+                try {
+                    fat = Double.parseDouble(Tfat.getText());
+                }
+                catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "Please enter fat as a number.");
+                    display();
+                }
+            }
+            if (a.getChol()){
+                try{
+                    chol = Double.parseDouble(Tchol.getText());
+                }
+                catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "Please enter calories as a number.");
+                    display();
+                }
+            }
+            try{
+                expire = formatter.parse(Texpiration.getText());
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Please enter the expiration date in the format 'MM/DD/YYY");
+                display();
+            }
+            
+    }
+    
     public void display(){
         JPanel myPanel = new JPanel(); //create dialog box
         myPanel.setLayout(new BoxLayout(myPanel,BoxLayout.Y_AXIS));
@@ -76,19 +173,8 @@ public class AddItemFrame {
         int result = JOptionPane.showConfirmDialog(null, myPanel, 
                "Add Item", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
-            try{
-            name = Titem.getText();
-            cal = Double.parseDouble(Tcal.getText());
-            sugar = Double.parseDouble(Tsugar.getText());
-            protein = Double.parseDouble(Tprotein.getText());
-            carbs = Double.parseDouble(Tcarbs.getText());
-            fat = Double.parseDouble(Tfat.getText());
-            chol = Double.parseDouble(Tchol.getText());
-            expire = formatter.parse(Texpiration.getText());
-            }
-            catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Please enter the expiration date in the format 'MM/DD/YYY");
-            }
+            confirm();
+            clear();
         }
     }
 }
