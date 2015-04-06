@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 
 
 public class AddItemFrame {
-    Settings a = new Settings();
+    Settings a;
     String name;
     double cal = 0;
     double sugar = 0;
@@ -132,7 +132,7 @@ public class AddItemFrame {
                 expire = formatter.parse(Texpiration.getText());
             }
             catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Please enter the expiration date in the format 'MM/DD/YYY");
+                JOptionPane.showMessageDialog(null, "Please enter the expiration date in the format 'MM/DD/YYYY");
                 display();
             }
             
