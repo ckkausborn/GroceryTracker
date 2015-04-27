@@ -2,11 +2,13 @@
 
 package AppPackage;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
 
 public class foodItem {
+    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy"); 
     private String name="";
     private Date expire = new Date(); //need to figure out how to input the date
     private double cal = 0;
@@ -15,11 +17,14 @@ public class foodItem {
     private double carbs = 0;
     private double fat = 0;
     private double chol = 0;
-    private boolean Pantry;
+    private double price = 0;
+    private boolean Pantry = true;
+    private boolean showPrice = true;
     
-    public foodItem(String name, Date expire){
+    public foodItem(String name, double price, Date expire){
         this.name = name;
         this.expire = expire;
+        this.price = price;
     }
     public foodItem(String name, Date expire, double cal, double sugar, double 
             protein, double carbs, double fat, double chol, boolean Pantry){
@@ -61,6 +66,12 @@ public class foodItem {
     public void setPantry(boolean pantry){
         Pantry = pantry;
     }
+    public void setShowPrice(boolean b){
+        showPrice = b;
+    }
+    public void setPrice(double price){
+        this.price = price;
+    }
     //get methods
     public String getName(){
         return name;
@@ -88,5 +99,11 @@ public class foodItem {
     }
     public boolean getPantry(){
         return Pantry;
+    }
+    public boolean getShowPrice(){
+        return showPrice;
+    }
+    public double getPrice(){
+        return price;
     }
 }

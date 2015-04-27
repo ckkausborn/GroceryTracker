@@ -2,24 +2,22 @@
 package AppPackage;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Dimension;
 import java.util.ArrayList;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 
 
 public class PantryPane extends JPanel{
     JList pantryList;
     JButton addItem;
+    JButton removeItem;
     JLabel name = new JLabel();
     JLabel cal= new JLabel();
     JLabel sugar = new JLabel();
@@ -32,21 +30,25 @@ public class PantryPane extends JPanel{
             
     public PantryPane(Settings s){
         addItem = new JButton("+");
+        removeItem = new JButton ("-");
         
         //init pantryList
         pantryList = new JList();
         pantryList.setVisibleRowCount(5);
         pantryList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane scrollpane = new JScrollPane(pantryList);
         
-        add(new JScrollPane(pantryList), BorderLayout.WEST);
+        
+        add(scrollpane, BorderLayout.WEST);
         add(addItem, BorderLayout.NORTH);
+        add(removeItem, BorderLayout.NORTH);
         
         
+    }
+    public void updateList(PantryFoodList e){
+        pantryList.setListData(e.pantryListNames.toArray());
     }
     
-    public void updateList(ArrayList<String> e){
-        pantryList.setListData(e.toArray());
-    }
     public void resetLabels(){
         name.setText("");
         cal.setText("");
