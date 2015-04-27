@@ -1,19 +1,34 @@
 
 
 package AppPackage;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class Settings {
     //Default each setting to false
-        boolean cal = false;
-        boolean sugar = false;
-        boolean protein = false;
-        boolean carbs = false;
-        boolean fat = false;
-        boolean chol = false;
+    boolean cal = false;
+    boolean sugar = false;
+    boolean protein = false;
+    boolean carbs = false;
+    boolean fat = false;
+    boolean chol = false;
+
+    //comparison holders
+    boolean tempcal = cal;
+    boolean tempsugar = sugar;
+    boolean tempcarbs = carbs;
+    boolean tempchol = chol;
+    boolean tempfat = fat;
+    boolean tempprotein = protein;
+    boolean noSelection = false;
+
+    boolean firstUse = true;
+        
+    //constructor    
     public Settings(){
     }
     
+    //get methods
     public boolean getCal(){
         return cal;
     }
@@ -32,8 +47,11 @@ public class Settings {
     public boolean getChol(){
         return chol;
     }
+    public void setSelection(boolean b){
+        noSelection = b;
+    }
     
-    public void display(){
+    public void display(PantryFoodList al){
         JPanel myPanel = new JPanel(); //create dialog box
         
         JCheckBox calbox =new JCheckBox("Calories", cal);
@@ -65,10 +83,13 @@ public class Settings {
         }
         cal = calbox.isSelected();
         sugar = sugarbox.isSelected();
+        protein = proteinbox.isSelected();
         carbs = carbsbox.isSelected();
-        chol= cholbox.isSelected();
         fat = fatbox.isSelected();
-        protein = proteinbox.isSelected();         
-        
+        chol = cholbox.isSelected();
+        if (!getCal()&&!getSugar()&&!getProtein()&&!getCarbs()&&!getFat()&&!getChol()){
+            setSelection(true);}
+        else{
+            setSelection(false);}
     }
 }
